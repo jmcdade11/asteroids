@@ -1,4 +1,5 @@
 import os
+import sys
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 
 import pygame
@@ -27,6 +28,10 @@ def main():
                 return
         for obj in updatable:
             obj.update(dt)
+        for asteroid in asteroids:
+            if asteroid.is_colliding(player):
+                print("Game over!")
+                sys.exit()
         screen.fill("black")
         for obj in drawable:
             obj.draw(screen)
